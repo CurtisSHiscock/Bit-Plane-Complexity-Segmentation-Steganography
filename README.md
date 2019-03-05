@@ -5,11 +5,11 @@ The program conceals data within the hard to distinguish 'noise-like regions' of
 
 More Info: http://datahide.org/BPCSe/principle-e.html
 
-### Prerequisites
+## Prerequisites
 
-Python
+* [Python](https://www.python.org/downloads/)
 
-### Installing
+## Installing
 
 Simply clone the repository to your desired directory 
 
@@ -26,10 +26,6 @@ git clone https://github.com/CurtisSHiscock/Bit-Plane-Complexity-Segmentation-St
 ```
 ./BPCS.py decode -v [vessel]
 ```
-
-## Built With
-
-* [Python](https://www.python.org/downloads/)
 
 ## Acknowledgments
 
