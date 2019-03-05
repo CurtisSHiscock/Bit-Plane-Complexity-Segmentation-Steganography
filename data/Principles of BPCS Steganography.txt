@@ -1,0 +1,139 @@
+  
+Principle of BPCS-Steganography
+(Bit-Plane Complexity Segmentation Based Embedding)
+ 
+  .
+
+(KIT-STEGROUP)
+
+1. Bit-Plane Decomposition of a Multi-Valued Image
+
+A multi-valued image (P) consisting of n-bit pixels can be decomposed into a set of n binary pictures. For example, if the image is an n-bit gray image, it is shown as,
+?
+P=(P1,P2,...,Pn).
+?
+In case the image is a Red, Green, Blue color picture, it is shown by
+?
+P=(PR1,PR2,..,PRn,PG1,PG2,..,PGn,PB1,PB2,..,PBn),
+?
+where PR1, PG1, PB1 are the most significant bit-planes (MSB), while PRn, PGn, PBn are the least significant planes (LSB).
+
+Ordinary image data is represented in digital number by a Pure Binary Code system (referred to as PBC which is commonly used  in image processing).  It is also possible to use other code systems such as Canonical Gray Code (CGC) [1]. CGC is better than PBC for BPCS-Steganography. The mutual conversion between PBC and CGC is shown in another page.
+
+As far as the bit-planes of a natural image are concerned, complexity [2] of each bit-plane pattern increases monotonically from the MSB (P1) to the LSB (Pn).  An image data not having this property will be an artificially processed data.  Most of the LSB planes look like random pattern. Figure 1 illustrates a couple of PBC bit-planes of a true color image (i.e., 24 bit color image). 
+ 
+ 
+			
+
+(A color image P)
+	
+
+(PR3)
+	
+
+(PR4)
+	
+
+(PR6)
+Fig 1. Bit-Planes
+ 
+
+2.  Nature of the human vision system and information embedding
+
+Each bit-plane can be segmented into "shape-informative" and "noise-looking" regions [2][3].  A shape-informative region consists of simple patterns, while a noise-looking region consists of complex patterns [3].  In Fig. 1, the plane PR3 is mostly shape-informative, but PR6  is mostly noise-looking.  PR4 is mixed with both shape-informative and noise-looking regions.  It is reported that two regions can be segmented by using a "black-and-white boarder length" based complexity measure [3][4][6]. It is also reported that we can replace each noise-looking region with another noise-looking patterns without changing the overall image quality. See Fig 2.
+
+Fig 2. Embedding a "noisy" square in the bottom right corner of PR6
+
+ 
+
+In Fig 2., a "noise-looking" square patch is placed (embedded) on the bottom right corner of the PR6 plane in Fig 1. However, no change is observed after embedding. BPCS-Steganography makes use of this nature of the human vision system.
+
+BPCS-Steganography often uses the CGC code system for image representation.
+
+ 
+ 
+3. BPCS-Steganography and traditional image-based steganography
+
+The most traditional image-based steganographic algorithms are as follows.
+   A. Use all the least significant bits of a vessel image for the hiding space of the secret data
+   B. Replace special components in the frequency domain of the vessel image with the secret data
+   C. Utilize the quantization error of the vessel image for a place to hide secret data
+
+However, all these methods have a relatively small data hiding capacity. The capacity is 5-15 % of the vessel data. Therefore, the straightforward application of the steganography has been limited to “watermarking” because it does not need a large data hiding capacity.
+
+BPCS-Steganography is absolutely different from traditional techniques. The most important feature is a large embedding capacity. In most cases it can embed 50% of the vessel data (a 24bit BMP image case). Reference [5] and [6] are good articles to know the details of BPCS embedding algorithm.
+
+ 
+
+4. Watermarking and Steganography
+
+Watermarking is a technique to embed some symbol data (or evidence data) in some valuable data such as an image, voice, music, video clip, etc.  It protects the original data from alteration. The embedded data can be small, but it must be very protective (robust) to filtering, re-sampling and other data alteration techniques. In watermarking the "external data" is valuable, but the embedded data is not so valuable.
+
+While in steganography, the embedding capacity should be large enough. Larger the better. But, the embedded data can be fragile rather than robust. This is because the embedded data is secret. It should be better destroyed by attacking than robust enough to stay long. The external data is just a dummy.
+
+So, the requirement and the objective of watermarking and steganography are very opposite even if they belong to the same information hiding technique.
+
+ 
+
+5. Experimental Program
+
+We implemented an experimental program (by the name "Digital Picture Envelope") of BPCS-Steganography and put it on a Web site for downloading since 1997. Presently, we re-designed the program from scratch and made it more powerful version ("Qtech Hide&View"). It is downloadable from other page. We intended to release this program for academic evaluation use. So, if you are a researcher, you can use it free. If you are not a researcher, but are very much interested in knowing what a steganography program is, then you can also download and use it for try.
+
+We set an embedding-and-extracting key ("Access Key") for embedding/extracting operation, but it is quite different from an ordinary "password." An ordinary password is "saved" in some place in the system, but  the Access Key in our system carries information to control the embedding/extracting algorithm, and it is not stored in any place in the system. Therefore, it is impossible for someone to steal it. As far as the Web version ("Qtech-HV v011") is concerned, we set up a "90 days validity" mechanism on the embedding part of the program. This is based on our security policy.
+
+When you want to implement your original BPCS-Steganography program, you need to tackle varieties of detailed algorithm before you start working on it. There are a lot of  items you must handle. The followings are some of the examples. 
+
+ 
+
+  1. Which bit-plane you will start embedding first, and what order next
+
+  2. How you traverse embedding on the bit-planes
+
+  3. Where and how to embed so cold "Conjugation map"
+
+  4. How to combine the embedding key with the embedding algorithm options
+
+  5. How you can outwit steganalysis
+
+It is practically impossible to make a compatible program with some given BPCS-Steganography program even if the embedding and extracting operations look the same.
+
+ 
+
+6. More knowledge to make your own program
+
+ 
+
+Before you start working on implementing your own BPCS program, you must learn a lot more about the BPCS-related topics which are not addressed in the academic papers published so far (e.g., [6] below). Such topics include, but not all, the followings.
+
+ 
+  	(A) 	General feature of the complexity histogram of a "natural image" bit-plane (An example is here.)
+  	(B) 	Complexity histograms of a non-compressed and a compressed file in general (See some examples.)
+  	(C) 	How the complexity histogram changes after the embedding operation. (An illustration is here.)
+  	(D) 	What is the merit of using CGC (Canonical Gray Code) over PBC (Pure Binary Code) for vessel image coding.
+  	(E) 	Details of the vessel image file format (e.g., BMP image file)
+  	(F) 	Graphical User Interface knowledge to make a "user-friendly" program
+
+Practically, you must be proficient enough to make your own program tools needed for developing your BPCS-Steganography program. "Bit-plane display tool", "PBC-CGC conversion tool", and "File complexity histogram display tool" may be indispensable for you.
+
+The implementation of BPCS-Steganography looks a good research project for many undergraduate/graduate students in many countries. However, we haven't heard of any report telling "We finally made it completely!", yet.
+
+References
+
+[1] Eiji Kawaguchi, et al: Depth-First Picture Expression Viewed from Digital Picture Processing, IEEE Trans. on PAMI, Vol.PAMI-5,No.4, pp.343-384, July, 1983.
+
+[2] Sei-ichiro Kamata, et al: Depth-First Coding for Multi-Valued Pictures Using Bit-Plane Decomposition, IEEE Trans. on CT, Vol.43,No.5, pp.1961-1969, May, 1995.
+
+[3] Michiharu Niimi, et al: An Image Embedding in Image by a Complexity Based Region Segmentation Method, Proc. ICIP'97, Vol.3, pp.74-77, (1997-10).
+
+[4] Koichi Nozaki, et al: A Large Capacity Steganography Using Color BMP Images, Proc. ACCV'98, pp.112-119, (1998-01).
+
+[5] Eiji Kawaguchi, et al: A Concept of Digital Picture Envelope for Internet Communication, in INFORMATION MODELLING AND KNOWLEDGE BASES X, H. Jaakkola et al (Eds), IOS Press, pp.343-349, 1999. (Download: 4,913KB)
+ 
+[6] Eiji Kawaguchi, et al: Principle and applications of BPCS-Steganography, SPIE's International Symposium on Voice, Video, and Data Communications, (1998-11). (Download: 480KB)
+ 
+
+Back to Home
+
+ 
+
+(Updated on May 22, 2015 by Eiji Kawaguchi)
