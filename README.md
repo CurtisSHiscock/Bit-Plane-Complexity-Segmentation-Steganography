@@ -14,14 +14,20 @@ Python
 
 ### Installing
 
+Simply clone the repository to your desired directory 
+
 ```
-https://github.com/CurtisSHiscock/Bit-Plane-Complexity-Segmentation-Steganography.git
+git clone https://github.com/CurtisSHiscock/Bit-Plane-Complexity-Segmentation-Steganography.git
 ```
 
 ## Deployment
 
 ```
 ./BPCS.py encode -i [infile] -v [vessel]
+```
+
+```
+./BPCS.py decode -v [vessel]
 ```
 
 ## Built With
