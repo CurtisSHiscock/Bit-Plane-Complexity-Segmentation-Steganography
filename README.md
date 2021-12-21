@@ -1,6 +1,6 @@
 # BPCS Steganoraphy Application
 
-A Bit-Plane Complexity Segmentation program based on an undergraduate research project at the University of Florida
+A Bit-Plane Complexity Segmentation program - undergraduate research project at the University of Florida.
 The program conceals data within the hard to distinguish 'noise-like regions' of the bit planes of images.
 
 More Info: http://datahide.org/BPCSe/principle-e.html
